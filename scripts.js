@@ -1,21 +1,4 @@
-const cardList = [{
-    title: 'cat 1',
-    path: 'images/cat1.jpg',
-    subTitle: 'About Cat 1',
-    description: 'Description of Cat 1'
-},
-{
-    title: 'cat 2',
-    path: 'images/cat2.jpg',
-    subTitle: 'About Cat 2',
-    description: 'Description of Cat 2'
-},
-{
-    title: 'cat 3',
-    path: 'images/cat3.jpg',
-    subTitle: 'About Cat 3',
-    description: 'Description of Cat 3'
-}];
+
 
 const addCards = (items) => {
     items.forEach(item => {
@@ -33,12 +16,34 @@ const addCards = (items) => {
 
 const formSumitted = () => {
     let formData = {};
-    formData.firstName = $('#first_name').val();
-    formData.lastName = $('#last_name').val();
-    formData.password = $('#password').val();
-    formData.email = $('#email').val();
+    formData.title = $('#title').val();
+    formData.subTitle = $('#subTitle').val();
+    formData.path = $('#path').val();
+    formData.description = $('#description').val();
 
     console.log(formData);
+    postCat(formData);
+}
+
+function postCat(cat){
+    $.ajax({
+        url: '/api/cat',
+        type:'POST',
+        date:cat,
+        success:(result)=>{
+            if (result.statusCode === 201){
+                alert('cat post successful');
+            }
+        }
+    })
+}
+
+function getAllCats(){
+    $.get('/api/cats', (response)=>{
+        if(response.statusCode === 200){
+            addCards(response.date);
+        }
+    });
 }
 
 $(document).ready(function(){
@@ -46,6 +51,6 @@ $(document).ready(function(){
     $('#formSubmit').click(()=>{
         formSumitted();
     });
-    addCards(cardList);
     $('.modal').modal();
+    getAllCats
 });
