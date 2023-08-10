@@ -7,9 +7,19 @@ let port = process.env.PORT || 3000;
 let collection;
 
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/'));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+async function run() {
+    try {
+      await client.connect();
+      collection = client.db().collection('Cats');
+      console.log(collection);
+    } catch(ex) {
+      console.error(ex);
+    }
+}
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -17,51 +27,40 @@ const client = new MongoClient(uri, {
       strict: true,
       deprecationErrors: true,
     }
-  });
+});
 
-
-  async function runDBConnection() {
-    try {
-      await client.connect();
-      collection = client.db().collection('cat');
-      console.log(collection);
-    } catch(ex){
-        console.error(ex);
-    }
-  }
-  runDBConnection().catch(console.dir);
-
-app.get('/', (req, res) => {
+app.get('/', function (req,res) {
     res.render('index.html');
 });
 
-app.get('/api/cat',(req,res)=>{
-    getAllCats((err,result)=>{
-        if(!err){
-            res.json({statusCode:200, data:result, message:'get all cats successful'});
-        }
-    });
-});
-
-app.post('/api/cat',(req,res)=>{
+app.post('/api/cat', function(req,res){
+    // ask DB to post this CAT
     let cat = req.body;
-    postCat(cat,(err, result) => {
-        if(!err){
-            res.json({statusCode:201, data:result, message:'success'});
+    insertCat(cat, (err,result) => {
+        if (!err) {
+            res.json({statusCode:201,data:result,message:'success'});
         }
     });
 });
 
-function postCat(cat,callback){
+function insertCat(cat, callback) {
     collection.insertOne(cat,callback);
 }
 
-function getAllCats(callback){
+app.get('/api/cats', (req,res)=>{
+    getAllCats((err,result)=>{
+        if (!err) {
+            res.json({statusCode:200,data:result,message:'success'});
+        }
+    });
+});
+
+function getAllCats(callback) {
     collection.find({}).toArray(callback);
 }
 
-app.listen(port, () => {
-    console.log('server started');
-    runDBConnection();
+app.listen(port, ()=>{
+    console.log('express server started');
+    run();
 });
 
