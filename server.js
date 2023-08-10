@@ -30,7 +30,6 @@ const client = new MongoClient(uri, {
     }
   }
   runDBConnection().catch(console.dir);
-  setTimeout(() => {client.close()}, 1500)
 
 app.get('/', (req, res) => {
     res.render('index.html');
