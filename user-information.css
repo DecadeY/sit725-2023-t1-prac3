@@ -1,0 +1,142 @@
+*{
+    user-select: none;
+}
+
+
+
+body{
+  background: url(Page/images/wallpaper.jpg) no-repeat;
+}
+
+nav {
+  background-color: rgba(255, 255, 255, .5);
+}
+
+.user-info-submit-btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.main-content {
+  background: rgba(255, 255, 255, 0.8);
+  width: 80%;
+  margin-left: 200px;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding-top: 20px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal1 {
+  background-color: #ffffff;
+  border-radius: 5pxrgb (255, 255, 255);
+  padding: 20px;
+}
+
+#modal1 .modal-content {
+  color: #333333;
+}
+
+#modal1 .modal-footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+#modal1 .modal-footer a {
+  margin-right: 10px;
+}
+
+#modal1 .btn {
+  background-color: #17b11c;
+  color: #ffffff;
+}
+
+#modal1 .btn:hover {
+  background-color: #123f14;
+}
+
+#modal1 label {
+  font-weight: bold;
+}
+
+#modal1 input[type="time"],
+#modal1 input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modal1 input[type="time"]:focus,
+#modal1 input[type="text"]:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+#modal1 .btn {
+  background-color: #17b11c;
+  color: #ffffff;
+}
+
+#modal1 .btn:hover {
+  background-color: #123f14;
+}
+
+#modal1 label {
+  font-weight: bold;
+}
+
+#modal2 input[type="time"],
+#modal2 input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modal2 input[type="time"]:focus,
+#modal2 input[type="text"]:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 100px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo img:hover {
+  transform: scale(0.9);
+}
+

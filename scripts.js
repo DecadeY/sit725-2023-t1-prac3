@@ -20,24 +20,23 @@ const formSumitted = () => {
     formData.description = $('#description').val();
 
     console.log(formData);
-    postCat(formData);
+    postItem(formData);
 }
 
-function postCat(cat) {
+function postItem(item) {
     $.ajax({
-        url:'/api/cat',
+        url:'/api/item',
         type:'POST',
-        data:cat,
+        data:item,
         success: (result) => {
             if (result.statusCode === 201) {
-                alert('cat posted');
             }
         }
     });
 }
 
-function getAllCats() {
-    $.get('/api/cats',(result)=>{
+function getAllItem() {
+    $.get('/api/item',(result)=>{
         if (result.statusCode === 200) {
             addCards(result.data);
         }
@@ -55,6 +54,74 @@ $(document).ready(function(){
         formSumitted();
     });
     $('.modal').modal();
-    getAllCats();
+    getAllItem();
     console.log('ready');
 });
+
+//Sign up submit form
+const submitFormSignIn = () => {
+    let formData = {};
+    let email1 = $("#email").val();
+    let pw1 = $("#password").val();
+    let pw2 = $("#confirm_password").val();
+  
+    //email check
+    let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(email1)) {
+      alert("Email is not valid");
+      return;
+    }
+
+     //Password check
+  if (pw1 !== pw2) {
+    alert("Not matched");
+    return;
+  }
+
+  //Submit form for login
+const submitLoginForm = () => {
+    let formData = {};
+    let email = $("#email").val();
+  
+    //email check
+    let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(email)) {
+      alert("Email is not valid");
+      return;
+    }
+  
+    formData.email = $("#email").val();
+    formData.password = $("#password").val();
+    // Print for test
+    console.log("form data: ", formData);
+    // Server update
+    loginUser(formData);
+  };
+  
+  //Login function
+  const loginUser = (user) => {
+    $.ajax({
+      url: "api/login",
+      data: user,
+      type: "POST",
+      success: (result) => {
+        if (result.statusCode === 200) {
+          localStorage.setItem("user_email", user.email);
+          alert(result.message);
+          window.location.href = "main.html"; // Redirect to another page
+        } else {
+          alert(result.message);
+        }
+      },
+    });
+  };
+  
+  $(document).ready(function () {
+    $("#login").click(() => {
+      submitLoginForm();
+    });
+  });
+
+}
+
+setInterval(remindEventStart, 1000); // Call remindEventStart every 1 second

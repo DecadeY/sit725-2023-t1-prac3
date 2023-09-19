@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userinformation</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+    <link rel="stylesheet" href="user-information.css">
+
+</head>
+<nav>
+  <div class="nav-wrapper navbar-size">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a target="_blank" href="https://www.google.com">Google</a></li>
+      <li><a target="_blank" href="login.html">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <body>
+    <div class="logo">
+      <a href="index.html"><img src="images/logo.png" alt="Logo" /></a>
+    </div>
+
+    <div class="main-content">
+        <div class="user-info">
+          <h2>User Information</h2>
+          <div class="user-info-details">
+            <p id="username">Name:</p>
+            <p id="email">Email:</p>
+            <p id="city">Suburb/City:</p>
+            <p id="postcode">Postcode:</p>
+            <p id="phone">Phone Number:</p>
+            <p id="address">Address:</p>
+          </div>
+          <button id="user-edit-btn">Edit</button>
+        </div>
+      </div>
+
+      <div id="userModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <!-- User information form -->
+          <form id="user-form">
+            <label for="username">Your Name:</label>
+            <input type="text" id="username" name="username" required />
+            <br />
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+            <!-- <option value="">Select Gender</option> -->
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+            </select>
+          <br />
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required />
+            <br />
+            <label for="postcode">Postcode:</label>
+            <input type="text" id="postcode" name="postcode" required />
+            <br />
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required />
+            <br />
+            <label for="city">Suburb/City:</label>
+            <input type="text" id="city" name="city" required />
+            <br />
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required />
+            <br />
+            <!-- save -->
+            <button class="user-info-submit-btn" id="user-submit-btn">
+              Submit/Save
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="scripts.js"></script>
+  
+  </body>
+</html>
